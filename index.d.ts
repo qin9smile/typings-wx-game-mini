@@ -269,4 +269,30 @@ declare namespace wx {
   interface EventTarget {
     addEventListener: (type: string, listener: any, options: Object) => void;
   }
+
+  /**
+   * ---------- 事件 ----------
+   */
+
+  interface BaseEvent {
+    /**
+     * 事件类型
+     */
+    type: string;
+
+    /**
+     * 事件生成时的时间戳
+     */
+    timeStamp: number;
+
+    /**
+     * 触发事件的组件的一些属性值集合
+     */
+    target: any;
+
+    /**
+     * 当前组件的一些属性值集合
+     */
+    currentTarget: any;
+  }
 }
