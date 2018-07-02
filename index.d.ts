@@ -150,4 +150,88 @@ declare namespace wx {
 
     // TODO: - WebglRendering bindCanvasTexture
   }
+
+  function createCanvas(contextType: "2d" | "webgl"): Canvas;
+
+  /**
+   * ---------- 系统 - 系统信息 ----------
+   */
+
+  /**
+   * 系统信息
+   */
+  interface SystemInfo {
+    brand: string;
+    model: string;
+    pixelRatio: number;
+    screenWidth: number;
+    screenHeight: number;
+    windowWidth: number;
+    windowHeight: number;
+    statusBarHeight: number;
+    language: string;
+    version: string;
+    system: string;
+    platform: string;
+    fontSizeSetting: string;
+    SDKVersion: string;
+  }
+
+  interface SystemInfoOptions {
+    success: (systemInfo: SystemInfo) => void;
+    fail?: Function;
+    complete?: Function;
+  }
+
+  function getSystemInfo(options: SystemInfoOptions): void;
+
+
+  function getSystemInfoSync(): SystemInfo;
+
+
+  /**
+   * ---------- 开放接口 - 设置 ----------
+   */
+
+  interface SettingSuccessResponse {
+    authSetting: AuthSetting;
+  }
+
+  type Scope = "scope.userInfo" |
+    "scope.userLocation" |
+    "scope.address" |
+    "scope.invoiceTitle" |
+    "scope.werun" |
+    "scope.record" |
+    "scope.writePhotosAlbum" |
+    "scope.camera";
+
+  type AuthSetting = {
+    [key in Scope]: boolean;
+  }
+
+  interface SettingOptions {
+    success: (res: SettingSuccessResponse) => void;
+
+    fail?: Function;
+
+    complete?: Function;
+  }
+
+  function getSetting(options: SettingOptions): void;
+
+  function openSetting(options: SettingOptions): void;
+
+  /**
+   * ---------- 开放接口 - 授权 ----------
+   */
+
+  interface AuthorizeOptions {
+    scope: Scope;
+    success?: (errMessage: string) => void;
+    fail?: Function;
+    complete?: Function;
+  }
+
+  function authorize(options: AuthorizeOptions): void;
 }
