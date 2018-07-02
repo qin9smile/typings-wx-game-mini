@@ -267,7 +267,7 @@ declare namespace wx {
   }
 
   interface EventTarget {
-    addEventListener: (type: string, listener: any, options: Object) => void;
+    addEventListener: (type: string, listener: any, options?: Object) => void;
   }
 
   /**
@@ -279,7 +279,6 @@ declare namespace wx {
      * 事件类型
      */
     type: string;
-
 
     /**
      * 事件生成时的时间戳
@@ -297,5 +296,96 @@ declare namespace wx {
     currentTarget: any;
 
     preventDefault: Function;
+  }
+
+  interface Touch {
+
+    /**
+     * 此 Touch 对象的唯一标识符. 
+     * 一次触摸动作(我们值的是手指的触摸)在平面上移动的整个过程中, 该标识符不变. 
+     * 可以根据它来判断跟踪的是否是同一次触摸过程. 
+     * 只读属性.
+     */
+    identifier: string;
+
+    /**
+     * 触点相对于屏幕左边沿的的X坐标. 
+     * 只读属性.
+     */
+    screenX: number;
+
+    /**
+     * 触点相对于屏幕上边沿的的Y坐标. 
+     * 只读属性.
+     */
+    screenY: number;
+
+    /**
+     * 触点相对于可见视区(visual viewport)左边沿的的X坐标. 不包括任何滚动偏移. 
+     * 只读属性.
+     */
+    clientX: number;
+
+    /**
+     * 触点相对于可见视区(visual viewport)上边沿的的Y坐标. 
+     * 不包括任何滚动偏移. 只读属性.
+     */
+    clientY: number;
+
+    /**
+     * 触点相对于HTML文档左边沿的的X坐标. 
+     * 当存在水平滚动的偏移时, 这个值包含了水平滚动的偏移. 
+     * 只读属性.
+     */
+    pageX: number;
+
+    /**
+     * 触点相对于HTML文档上边沿的的Y坐标. 
+     * 当存在垂直滚动的偏移时, 这个值包含了垂直滚动的偏移. 
+     * 只读属性.
+     */
+    pageY: number;
+
+    /**
+     * 能够包围用户和触摸平面的接触面的最小椭圆的水平轴(X轴)半径. 
+     * 这个值的单位和 screenX 相同. 只读属性.
+     */
+    radiusX: number;
+
+    /**
+     * 能够包围用户和触摸平面的接触面的最小椭圆的垂直轴(Y轴)半径. 
+     * 这个值的单位和 screenY 相同. 
+     * 只读属性.
+     */
+    radiusY: number;
+
+    /**
+     * 它是这样一个角度值：由radiusX 和 radiusY 描述的正方向的椭圆，
+     * 需要通过顺时针旋转这个角度值，才能最精确地覆盖住用户和触摸平面的接触面. 
+     * 只读属性.
+     */
+    rotationAngle: number;
+
+    /**
+     * 手指挤压触摸平面的压力大小, 从0.0(没有压力)到1.0(最大压力)的浮点数. 
+     * 只读属性.
+     */
+    force: number;
+
+    /**
+     * 当这个触点最开始被跟踪时(在 touchstart 事件中), 触点位于的HTML元素. 
+     * 哪怕在触点移动过程中, 触点的位置已经离开了这个元素的有效交互区域, 
+     * 或者这个元素已经被从文档中移除. 
+     * 需要注意的是, 如果这个元素在触摸过程中被移除, 这个事件仍然会指向它, 
+     * 但是不会再冒泡这个事件到 window 或 document 对象. 
+     * 因此, 如果有元素在触摸过程中可能被移除, 最佳实践是将触摸事件的监听器绑定到这个元素本身,
+     * 防止元素被移除后, 无法再从它的上一级元素上侦测到从该元素冒泡的事件. 
+     * 只读属性.
+     */
+    target: any;
+  }
+
+  interface TouchEvent extends BaseEvent {
+    touches: Touch[];
   }
 }
