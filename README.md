@@ -1,0 +1,1 @@
+# typings-wx-game-mini
