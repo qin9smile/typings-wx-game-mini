@@ -280,6 +280,7 @@ declare namespace wx {
      */
     type: string;
 
+
     /**
      * 事件生成时的时间戳
      */
@@ -294,5 +295,7 @@ declare namespace wx {
      * 当前组件的一些属性值集合
      */
     currentTarget: any;
+
+    preventDefault: Function;
   }
 }
