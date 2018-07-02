@@ -113,7 +113,7 @@ declare namespace wx {
     wxBindCanvasTexture: (texture: number, canvas: Canvas) => void;
   }
 
-  interface Canvas {
+  interface Canvas extends Canvas2DContext {
     /**
      * 画布的宽度
      */
@@ -234,4 +234,39 @@ declare namespace wx {
   }
 
   function authorize(options: AuthorizeOptions): void;
+
+
+  interface BaseEvent {
+    /**
+     * 事件类型
+     */
+    type: string;
+
+    /**
+     * 事件生成时的时间戳
+     */
+    timeStamp: number;
+
+    /**
+     * 触发事件的组件的一些属性值集合
+     */
+    target: any;
+
+    /**
+     * 当前组件的一些属性值集合
+     */
+    currentTarget: any;
+  }
+
+  /**
+   * ---------- RenderingContext - Canvas 2D Context ----------
+   */
+
+  interface Canvas2DContext extends EventTarget {
+  drawImage: Function;
+  }
+
+  interface EventTarget {
+    addEventListener: (type: string, listener: any, options: Object) => void;
+  }
 }
